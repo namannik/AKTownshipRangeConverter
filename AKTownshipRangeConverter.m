@@ -252,7 +252,9 @@ static NSString * const getPMListPath       = @"GetPMList"   ;
     
     [self getDataWithURL:urlString
               completion:^{
+                  
                   completion(_location, _polygon);
+                  
               } failure:^(NSString *failureDescription) {
                   failure(failureDescription);
               }];
@@ -310,7 +312,7 @@ static NSString * const getPMListPath       = @"GetPMList"   ;
                completion:(void (^)(NSDictionary *meridians))completion
                   failure:(void (^)(NSString *failureDescription))failure
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@/?%@StateAbbrev=%@",
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@?StateAbbrev=%@",
                            townshipGeocoderURL,
                            getPMListPath,
                            stateAbbreviation];

@@ -23,7 +23,7 @@
 // THE SOFTWARE.
 
 // This Objective-C class is a wrapper around the Township Geocoder web service,
-// which provided by the United States Bureau of Land Management GeoCommunicator.
+// which is provided by the United States Bureau of Land Management GeoCommunicator.
 //
 // This class was not developed, nor is it maintained by, the United States Bureau of Land Management.
 //
