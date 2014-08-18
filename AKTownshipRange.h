@@ -73,4 +73,7 @@ typedef enum
 @property NSString *sectionDivision;
 @property NSString *townshipDuplicateCode;
 
+@property BOOL isValid;
+@property NSString *statusString;
+
 @end

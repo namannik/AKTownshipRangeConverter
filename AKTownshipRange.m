@@ -26,6 +26,8 @@
 
 @implementation AKTownshipRange
 
+@synthesize statusString = _statusString;
+
 #define stateStringKey           @"townshipRangeKeyStateString"
 #define principalMeridianCodeKey @"townshipRangeKeyPrincipalMeridianCode"
 #define principalMeridianNameKey @"townshipRangeKeyPrincipalMeridianName"
@@ -38,6 +40,8 @@
 #define sectionNumberKey         @"townshipRangeKeySectionNumber"
 #define sectionDivisionKey       @"townshipRangeKeySectionDivision"
 #define townshipDuplicateCodeKey @"townshipRangeKeyTownshipDuplicateCode"
+#define isValidKey               @"townshipRangeKeyIsValid"
+#define statusStringKey          @"townshipRangeKeyStatusString"
 
 -(id)init
 {
@@ -46,6 +50,7 @@
     {
         _sectionDivision = @"";
         _townshipDuplicateCode = @"";
+        _isValid = false;
     }
     return self;
 }
@@ -68,6 +73,8 @@
         self.section               = [aDecoder decodeIntForKey   :sectionNumberKey        ];
         self.sectionDivision       = [aDecoder decodeObjectForKey:sectionDivisionKey      ];
         self.townshipDuplicateCode = [aDecoder decodeObjectForKey:townshipDuplicateCodeKey];
+        self.isValid               = [aDecoder decodeBoolForKey  :isValidKey              ];
+        self.statusString          = [aDecoder decodeObjectForKey:statusStringKey         ];
     }
     return self;
 }
@@ -86,6 +93,8 @@
     [aCoder encodeInt   :self.section               forKey:sectionNumberKey        ];
     [aCoder encodeObject:self.sectionDivision       forKey:sectionDivisionKey      ];
     [aCoder encodeObject:self.townshipDuplicateCode forKey:townshipDuplicateCodeKey];
+    [aCoder encodeBool  :self.isValid               forKey:isValidKey              ];
+    [aCoder encodeObject:self.statusString          forKey:statusStringKey         ];
 }
 
 #pragma mark - Township Direction
@@ -115,5 +124,15 @@
 -(rangeDirection)rangeDirection  { return _rangeDirection;       }
 
 -(NSString*)rangeDirectionString { return _rangeDirectionString; }
+
+-(void)setStatusString:(NSString *)statusString
+{
+    _statusString = statusString;
+}
+
+-(NSString*)statusString
+{
+    return _statusString;
+}
 
 @end
