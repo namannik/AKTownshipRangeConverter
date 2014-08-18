@@ -313,19 +313,23 @@ static NSString * const getPMListPath       = @"GetPMList"   ;
                            location.coordinate.latitude,
                            location.coordinate.longitude];
     
+    __weak typeof (self) weakSelf = self;
+    
     [self getDataWithURL:urlString
               completion:^{
                   
-                  [self meridianNameForCode:_townshipRange.principalMeridianCode
-                          stateAbbreviation:_townshipRange.stateAbbreviation
-                                 completion:^(NSString *meridianName) {
-                                     
-                                     _townshipRange.principalMeridianName = meridianName;
-                                     completion(_townshipRange, _polygon);
-                                    
-                                 } failure:^(NSString *failureDescription) {
-                                     failure(failureDescription);
-                                 }];
+                  [weakSelf meridianNameForCode:_townshipRange.principalMeridianCode
+                              stateAbbreviation:_townshipRange.stateAbbreviation
+                                     completion:^(NSString *meridianName) {
+                                         
+                                         __strong typeof (weakSelf) strongSelf = weakSelf;
+                                         strongSelf->_townshipRange.principalMeridianName = meridianName;
+                                         strongSelf->_townshipRange.isValid = true;
+                                         completion(_townshipRange, _polygon);
+                                        
+                                     } failure:^(NSString *failureDescription) {
+                                         failure(failureDescription);
+                                     }];
                   
               } failure:^(NSString *failureDescription) {
                   failure(failureDescription);

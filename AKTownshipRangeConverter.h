@@ -21,7 +21,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
+//
 // This Objective-C class is a wrapper around the Township Geocoder web service,
 // which is provided by the United States Bureau of Land Management GeoCommunicator.
 //
@@ -38,7 +38,6 @@
 //
 // BLM GeoCommunicator Data Disclaimer:
 //    http://www.geocommunicator.gov/GeoComm/GC_disclaimer.htm
-//
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
