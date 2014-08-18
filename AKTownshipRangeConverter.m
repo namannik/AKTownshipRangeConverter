@@ -121,20 +121,61 @@ static NSString * const getPMListPath       = @"GetPMList"   ;
             _townshipRange = nil;
             _townshipRange = [[AKTownshipRange alloc]init];
             
-            _townshipRange.stateAbbreviation     = [ trsComponents objectAtIndex:0];
-            _townshipRange.principalMeridianCode = (int) [[trsComponents objectAtIndex:1] integerValue];
-
-            _townshipRange.townshipNumber        = (int) [[trsComponents objectAtIndex:2] integerValue];
-            _townshipRange.townshipFraction      = (int) [[trsComponents objectAtIndex:3] integerValue];
-            NSString *townshipDirectionString    = [ trsComponents objectAtIndex:4];
+            NSString *townshipDirectionString;
+            NSString *rangeDirectionString;
             
-            _townshipRange.rangeNumber           = (int) [[trsComponents objectAtIndex:5] integerValue];
-            _townshipRange.townshipFraction      = (int) [[trsComponents objectAtIndex:6] integerValue];
-            NSString *rangeDirectionString       = [ trsComponents objectAtIndex:7];
-            
-            _townshipRange.section               = (int) [[trsComponents objectAtIndex:8] integerValue];
-            _townshipRange.sectionDivision       = [ trsComponents objectAtIndex:9];
-            _townshipRange.townshipDuplicateCode = [ trsComponents objectAtIndex:10];
+            for (int i=0; i<[trsComponents count]; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        _townshipRange.stateAbbreviation     = [trsComponents objectAtIndex:0];
+                        break;
+                        
+                    case 1:
+                        _townshipRange.principalMeridianCode = (int) [[trsComponents objectAtIndex:1] integerValue];
+                        break;
+                        
+                    case 2:
+                        _townshipRange.townshipNumber        = (int) [[trsComponents objectAtIndex:2] integerValue];
+                        break;
+                        
+                    case 3:
+                        _townshipRange.townshipFraction      = (int) [[trsComponents objectAtIndex:3] integerValue];
+                        break;
+                        
+                    case 4:
+                        townshipDirectionString              = [trsComponents objectAtIndex:4];
+                        break;
+                        
+                    case 5:
+                        _townshipRange.rangeNumber           = (int) [[trsComponents objectAtIndex:5] integerValue];
+                        break;
+                        
+                    case 6:
+                        _townshipRange.townshipFraction      = (int) [[trsComponents objectAtIndex:6] integerValue];
+                        break;
+                        
+                    case 7:
+                        rangeDirectionString                 = [trsComponents objectAtIndex:7];
+                        break;
+                        
+                    case 8:
+                        _townshipRange.section               = (int) [[trsComponents objectAtIndex:8] integerValue];
+                        break;
+                        
+                    case 9:
+                        _townshipRange.sectionDivision       = [trsComponents objectAtIndex:9];
+                        break;
+                        
+                    case 10:
+                        _townshipRange.townshipDuplicateCode = [trsComponents objectAtIndex:10];
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
             
             if      ([townshipDirectionString isEqualToString:@"N"]) _townshipRange.townshipDirection = townshipDirectionNorth;
             else if ([townshipDirectionString isEqualToString:@"S"]) _townshipRange.townshipDirection = townshipDirectionSouth;
